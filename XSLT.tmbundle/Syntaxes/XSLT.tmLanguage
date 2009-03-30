@@ -1,123 +1,381 @@
-{	scopeName = 'text.xml.xsl';
-	fileTypes = ( 'xsl', 'xslt' );
-	foldingStartMarker = '^\s*(<[^!?%/](?!.+?(/>|</.+?>))|<[!%]--(?!.+?--%?>)|<%[!]?(?!.+?%>))';
-	foldingStopMarker = '^\s*(</[^>]+>|[/%]>|-->)\s*$';
-	patterns = (
-		{	contentName = 'meta.block.template.xsl';
-			begin = '(<)((xsl)(:)(template))';
-			end = '(</)((xsl)(:)(template))(>)';
-			captures = {
-			    0 = { name = 'meta.tag.template.xsl'; };
-				1 = { name = 'punctuation.definition.tag.xml'; };
-				2 = { name = 'entity.name.tag.xml'; };
-				3 = { name = 'entity.name.tag.namespace.xml'; };
-				4 = { name = 'punctuation.separator.namespace.xml'; };
-				5 = { name = 'entity.name.tag.localname.xml'; };
-				6 = { name = 'punctuation.definition.tag.xml'; };
-			};
-			patterns = (
-			    {   name = 'meta.tag.template.xsl';
-			        begin = '(?<=xsl:template)\s';
-			        end = '>';
-			        patterns = (
-			            { include = '#tagStuff'; }
-			        );
-			    },
-			    {   include = '$self'; }
-			);
-		},
-		{	contentName = 'meta.block.for-each.xsl';
-			begin = '(<)((xsl)(:)(for-each))';
-			end = '(</)((xsl)(:)(for-each))(>)';
-			captures = {
-			    0 = { name = 'meta.tag.for-each.xsl'; };
-				1 = { name = 'punctuation.definition.tag.xml'; };
-				2 = { name = 'entity.name.tag.xml'; };
-				3 = { name = 'entity.name.tag.namespace.xml'; };
-				4 = { name = 'punctuation.separator.namespace.xml'; };
-				5 = { name = 'entity.name.tag.localname.xml'; };
-				6 = { name = 'punctuation.definition.tag.xml'; };
-			};
-			patterns = (
-			    {   name = 'meta.tag.for-each.xsl';
-			        begin = '(?<=xsl:for-each)\s';
-			        end = '>';
-			        patterns = (
-			            { include = '#tagStuff'; }
-			        );
-			    },
-			    {   include = '$self'; }
-			);
-		},
-		{	contentName = 'meta.block.apply-templates.xsl';
-			begin = '(<)((xsl)(:)(apply-templates))';
-			end = '(</)((xsl)(:)(apply-templates))(>)';
-			captures = {
-			    0 = { name = 'meta.tag.apply-templates.xsl'; };
-				1 = { name = 'punctuation.definition.tag.xml'; };
-				2 = { name = 'entity.name.tag.xml'; };
-				3 = { name = 'entity.name.tag.namespace.xml'; };
-				4 = { name = 'punctuation.separator.namespace.xml'; };
-				5 = { name = 'entity.name.tag.localname.xml'; };
-				6 = { name = 'punctuation.definition.tag.xml'; };
-			};
-			patterns = (
-			    {   name = 'meta.tag.apply-templates.xsl';
-			        begin = '(?<=xsl:apply-templates)\s';
-			        end = '>';
-			        patterns = (
-			            { include = '#tagStuff'; }
-			        );
-			    },
-			    {   include = '$self'; }
-			);
-		},
-		{	contentName = 'meta.block.choose.xsl';
-			begin = '(<)((xsl)(:)(choose))(>)';
-			end = '(</)((xsl)(:)(choose))(>)';
-			captures = {
-			    0 = { name = 'meta.tag.choose.xsl'; };
-				1 = { name = 'punctuation.definition.tag.xml'; };
-				2 = { name = 'entity.name.tag.xml'; };
-				3 = { name = 'entity.name.tag.namespace.xml'; };
-				4 = { name = 'punctuation.separator.namespace.xml'; };
-				5 = { name = 'entity.name.tag.localname.xml'; };
-				6 = { name = 'punctuation.definition.tag.xml'; };
-			};
-			patterns = (
-			    { include = '$self'; }
-			);
-		},
-		{	include = 'text.xml'; },
-	);
-	repository = {
-		doublequotedString = {
-			name = 'string.quoted.double.xml';
-			begin = '"';
-			end = '"';
-			beginCaptures = { 0 = { name = 'punctuation.definition.string.begin.xml'; }; };
-			endCaptures = { 0 = { name = 'punctuation.definition.string.end.xml'; }; };
-		};
-		singlequotedString = {
-			name = 'string.quoted.single.xml';
-			begin = "'";
-			end = "'";
-			beginCaptures = { 0 = { name = 'punctuation.definition.string.begin.xml'; }; };
-			endCaptures = { 0 = { name = 'punctuation.definition.string.end.xml'; }; };
-		};
-		tagStuff = {
-			patterns = (
-				{	match = '(?<=\s)(?:([-_a-zA-Z0-9]+)((:)))?([_a-zA-Z-]+)=';
-					captures = {
-						1 = { name = 'entity.other.attribute-name.namespace.xml'; };
-						2 = { name = 'entity.other.attribute-name.xml'; };
-						3 = { name = 'punctuation.separator.namespace.xml'; };
-						4 = { name = 'entity.other.attribute-name.localname.xml'; };
-					};
-				},
-				{	include = '#doublequotedString'; },
-				{	include = '#singlequotedString'; },
-			);
-		};
-	};
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>xsl</string>
+		<string>xslt</string>
+	</array>
+	<key>foldingStartMarker</key>
+	<string>^\s*(&lt;[^!?%/](?!.+?(/&gt;|&lt;/.+?&gt;))|&lt;[!%]--(?!.+?--%?&gt;)|&lt;%[!]?(?!.+?%&gt;))</string>
+	<key>foldingStopMarker</key>
+	<string>^\s*(&lt;/[^&gt;]+&gt;|[/%]&gt;|--&gt;)\s*$</string>
+	<key>keyEquivalent</key>
+	<string>^~X</string>
+	<key>name</key>
+	<string>XSLT</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(template))</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.template.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.template.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(template))(&gt;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=xsl:template)\s</string>
+					<key>end</key>
+					<string>&gt;</string>
+					<key>name</key>
+					<string>meta.tag.template.xsl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tagStuff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(for-each))</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.for-each.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.for-each.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(for-each))(&gt;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=xsl:for-each)\s</string>
+					<key>end</key>
+					<string>&gt;</string>
+					<key>name</key>
+					<string>meta.tag.for-each.xsl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tagStuff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(apply-templates))</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.apply-templates.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.apply-templates.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(apply-templates))(&gt;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(?&lt;=xsl:apply-templates)\s</string>
+					<key>end</key>
+					<string>&gt;</string>
+					<key>name</key>
+					<string>meta.tag.apply-templates.xsl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#tagStuff</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(choose))(&gt;)</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.choose.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.choose.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(choose))(&gt;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>text.xml</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>doublequotedString</key>
+		<dict>
+			<key>begin</key>
+			<string>"</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.xml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>"</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.xml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.double.xml</string>
+		</dict>
+		<key>singlequotedString</key>
+		<dict>
+			<key>begin</key>
+			<string>'</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.xml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>'</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.xml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.single.xml</string>
+		</dict>
+		<key>tagStuff</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.namespace.xml</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.xml</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.separator.namespace.xml</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>entity.other.attribute-name.localname.xml</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(?&lt;=\s)(?:([-_a-zA-Z0-9]+)((:)))?([_a-zA-Z-]+)=</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#doublequotedString</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#singlequotedString</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>scopeName</key>
+	<string>text.xml.xsl</string>
+	<key>uuid</key>
+	<string>8289DBAA-7D37-4700-B50B-C78D376D00F6</string>
+</dict>
+</plist>
