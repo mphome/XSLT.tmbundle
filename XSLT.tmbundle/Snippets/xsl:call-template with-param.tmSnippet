@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;xsl:call-template name="${1:value}"&gt;
+	&lt;xsl:with-param name="${2:name}"&gt;${3:value}&lt;/xsl:with-param&gt;$0
+&lt;/xsl:call-template&gt;</string>
+	<key>name</key>
+	<string>xsl:call-template with-param</string>
+	<key>scope</key>
+	<string>text.xml.xsl meta.block.template.xsl</string>
+	<key>tabTrigger</key>
+	<string>&lt;ctp</string>
+	<key>uuid</key>
+	<string>C5586C54-8E69-4C48-890D-B5D8F1B94B61</string>
+</dict>
+</plist>
