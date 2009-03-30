@@ -3,11 +3,11 @@
 	foldingStartMarker = '^\s*(<[^!?%/](?!.+?(/>|</.+?>))|<[!%]--(?!.+?--%?>)|<%[!]?(?!.+?%>))';
 	foldingStopMarker = '^\s*(</[^>]+>|[/%]>|-->)\s*$';
 	patterns = (
-		{	contentName = 'meta.block.choose.xsl';
-			begin = '(<)((xsl)(:)(choose))(>)';
-			end = '(</)((xsl)(:)(choose))(>)';
+		{	contentName = 'meta.block.template.xsl';
+			begin = '(<)((xsl)(:)(template))';
+			end = '(</)((xsl)(:)(template))(>)';
 			captures = {
-			    0 = { name = 'meta.tag.choose.xsl'; };
+			    0 = { name = 'meta.tag.template.xsl'; };
 				1 = { name = 'punctuation.definition.tag.xml'; };
 				2 = { name = 'entity.name.tag.xml'; };
 				3 = { name = 'entity.name.tag.namespace.xml'; };
@@ -16,7 +16,60 @@
 				6 = { name = 'punctuation.definition.tag.xml'; };
 			};
 			patterns = (
-			    { include = "$self"; }
+			    {   name = 'meta.tag.template.xsl';
+			        begin = '(?<=xsl:template)\s';
+			        end = '>';
+			        patterns = (
+			            { include = '#tagStuff'; }
+			        );
+			    },
+			    {   include = '$self'; }
+			);
+		},
+		{	contentName = 'meta.block.for-each.xsl';
+			begin = '(<)((xsl)(:)(for-each))';
+			end = '(</)((xsl)(:)(for-each))(>)';
+			captures = {
+			    0 = { name = 'meta.tag.for-each.xsl'; };
+				1 = { name = 'punctuation.definition.tag.xml'; };
+				2 = { name = 'entity.name.tag.xml'; };
+				3 = { name = 'entity.name.tag.namespace.xml'; };
+				4 = { name = 'punctuation.separator.namespace.xml'; };
+				5 = { name = 'entity.name.tag.localname.xml'; };
+				6 = { name = 'punctuation.definition.tag.xml'; };
+			};
+			patterns = (
+			    {   name = 'meta.tag.for-each.xsl';
+			        begin = '(?<=xsl:for-each)\s';
+			        end = '>';
+			        patterns = (
+			            { include = '#tagStuff'; }
+			        );
+			    },
+			    {   include = '$self'; }
+			);
+		},
+		{	contentName = 'meta.block.apply-templates.xsl';
+			begin = '(<)((xsl)(:)(apply-templates))';
+			end = '(</)((xsl)(:)(apply-templates))(>)';
+			captures = {
+			    0 = { name = 'meta.tag.apply-templates.xsl'; };
+				1 = { name = 'punctuation.definition.tag.xml'; };
+				2 = { name = 'entity.name.tag.xml'; };
+				3 = { name = 'entity.name.tag.namespace.xml'; };
+				4 = { name = 'punctuation.separator.namespace.xml'; };
+				5 = { name = 'entity.name.tag.localname.xml'; };
+				6 = { name = 'punctuation.definition.tag.xml'; };
+			};
+			patterns = (
+			    {   name = 'meta.tag.apply-templates.xsl';
+			        begin = '(?<=xsl:apply-templates)\s';
+			        end = '>';
+			        patterns = (
+			            { include = '#tagStuff'; }
+			        );
+			    },
+			    {   include = '$self'; }
 			);
 		},
 		{	contentName = 'meta.block.choose.xsl';
@@ -32,7 +85,7 @@
 				6 = { name = 'punctuation.definition.tag.xml'; };
 			};
 			patterns = (
-			    { include = "$self"; }
+			    { include = '$self'; }
 			);
 		},
 		{	include = 'text.xml'; },
@@ -54,7 +107,7 @@
 		};
 		tagStuff = {
 			patterns = (
-				{	match = ' (?:([-_a-zA-Z0-9]+)((:)))?([_a-zA-Z-]+)=';
+				{	match = '(?<=\s)(?:([-_a-zA-Z0-9]+)((:)))?([_a-zA-Z-]+)=';
 					captures = {
 						1 = { name = 'entity.other.attribute-name.namespace.xml'; };
 						2 = { name = 'entity.other.attribute-name.xml'; };
