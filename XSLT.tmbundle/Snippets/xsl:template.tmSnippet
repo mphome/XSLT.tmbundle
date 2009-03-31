@@ -9,7 +9,7 @@
 	<key>name</key>
 	<string>xsl:template</string>
 	<key>scope</key>
-	<string>text.xml.xsl</string>
+	<string>text.xml.xsl - meta.block.template.xsl</string>
 	<key>tabTrigger</key>
 	<string>&lt;t</string>
 	<key>uuid</key>
