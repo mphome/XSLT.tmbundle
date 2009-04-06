@@ -20,7 +20,44 @@
 		<dict>
 			<key>begin</key>
 			<string>(&lt;)((xsl)(:)(template))</string>
-			<key>captures</key>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.template.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.template.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(template))(&gt;)</string>
+			<key>endCaptures</key>
 			<dict>
 				<key>0</key>
 				<dict>
@@ -58,10 +95,6 @@
 					<string>punctuation.definition.tag.xml</string>
 				</dict>
 			</dict>
-			<key>contentName</key>
-			<string>meta.block.template.xsl</string>
-			<key>end</key>
-			<string>(&lt;/)((xsl)(:)(template))(&gt;)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -156,7 +189,95 @@
 		<dict>
 			<key>begin</key>
 			<string>(&lt;)((xsl)(:)(apply-templates))</string>
-			<key>captures</key>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(/&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.tag.apply-templates.xsl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tagStuff</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(apply-templates))(?!(?-m).*/&gt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.apply-templates.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.apply-templates.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(apply-templates))(&gt;)</string>
+			<key>endCaptures</key>
 			<dict>
 				<key>0</key>
 				<dict>
@@ -194,10 +315,6 @@
 					<string>punctuation.definition.tag.xml</string>
 				</dict>
 			</dict>
-			<key>contentName</key>
-			<string>meta.block.apply-templates.xsl</string>
-			<key>end</key>
-			<string>(&lt;/)((xsl)(:)(apply-templates))(&gt;)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -205,6 +322,14 @@
 					<string>(?&lt;=xsl:apply-templates)\s</string>
 					<key>end</key>
 					<string>&gt;</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.tag.xml</string>
+						</dict>
+					</dict>
 					<key>name</key>
 					<string>meta.tag.apply-templates.xsl</string>
 					<key>patterns</key>
