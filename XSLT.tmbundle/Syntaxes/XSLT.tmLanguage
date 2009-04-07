@@ -19,7 +19,58 @@
 	<array>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;)((xsl)(:)(template))</string>
+			<string>(&lt;)((xsl)(:)(template))(?=[^&gt;]+/&gt;)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(/&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.tag.template.xsl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#tagStuff</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)((xsl)(:)(template))(?![^&gt;]*/&gt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -102,6 +153,14 @@
 					<string>(?&lt;=xsl:template)\s</string>
 					<key>end</key>
 					<string>&gt;</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.tag.xml</string>
+						</dict>
+					</dict>
 					<key>name</key>
 					<string>meta.tag.template.xsl</string>
 					<key>patterns</key>
@@ -121,7 +180,44 @@
 		<dict>
 			<key>begin</key>
 			<string>(&lt;)((xsl)(:)(for-each))</string>
-			<key>captures</key>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>meta.tag.for-each.xsl</string>
+				</dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.xml</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.xml</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.namespace.xml</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.namespace.xml</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.tag.localname.xml</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>meta.block.for-each.xsl</string>
+			<key>end</key>
+			<string>(&lt;/)((xsl)(:)(for-each))(&gt;)</string>
+			<key>endCaptures</key>
 			<dict>
 				<key>0</key>
 				<dict>
@@ -159,10 +255,6 @@
 					<string>punctuation.definition.tag.xml</string>
 				</dict>
 			</dict>
-			<key>contentName</key>
-			<string>meta.block.for-each.xsl</string>
-			<key>end</key>
-			<string>(&lt;/)((xsl)(:)(for-each))(&gt;)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -188,7 +280,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;)((xsl)(:)(apply-templates))</string>
+			<string>(&lt;)((xsl)(:)(apply-templates))(?=[^&gt;]+/&gt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -239,7 +331,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;)((xsl)(:)(apply-templates))(?!(?-m).*/&gt;)</string>
+			<string>(&lt;)((xsl)(:)(apply-templates))(?![^&gt;]*/&gt;)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>

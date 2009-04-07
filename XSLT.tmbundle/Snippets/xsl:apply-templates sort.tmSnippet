@@ -3,14 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>&lt;xsl:text&gt;${1:text}&lt;/xsl:text&gt;$0</string>
+	<string>&lt;xsl:apply-templates select="${1:value}"&gt;
+	&lt;xsl:sort select="${2:node}" order="${3:ascending}" data-type="${4:text}" /&gt;$5
+&lt;/xsl:apply-templates&gt;$0</string>
 	<key>name</key>
-	<string>xsl:text</string>
+	<string>xsl:apply-templates sort</string>
 	<key>scope</key>
 	<string>text.xml.xsl meta.block.template.xsl</string>
 	<key>tabTrigger</key>
-	<string>&lt;t</string>
+	<string>&lt;ats</string>
 	<key>uuid</key>
-	<string>D728C1E2-B499-4F42-8404-438371525747</string>
+	<string>5D094A0F-BE8F-40B8-8238-193DA1C0FD46</string>
 </dict>
 </plist>
