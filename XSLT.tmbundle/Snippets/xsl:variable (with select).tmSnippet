@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;xsl:variable name="${1:parameter}" select="${2:node}" /&gt;$0</string>
+	<key>name</key>
+	<string>xsl:variable (with select)</string>
+	<key>scope</key>
+	<string>text.xml.xsl</string>
+	<key>tabTrigger</key>
+	<string>&lt;vars</string>
+	<key>uuid</key>
+	<string>F017448B-79AC-4C28-9D9A-D0BA064A8BF6</string>
+</dict>
+</plist>
