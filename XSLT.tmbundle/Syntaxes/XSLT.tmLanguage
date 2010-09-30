@@ -113,7 +113,7 @@
 				<key>0</key>
 				<dict>
 					<key>name</key>
-					<string>meta.tag.template.xsl</string>
+					<string>meta.tag.end.template.xsl</string>
 				</dict>
 				<key>1</key>
 				<dict>
