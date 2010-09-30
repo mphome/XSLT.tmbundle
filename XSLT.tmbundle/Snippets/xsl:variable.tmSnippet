@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>content</key>
-	<string>&lt;xsl:variable name="${1:variable}"&gt;
-	$0
-&lt;/xsl:variable&gt;</string>
+	<string>&lt;xsl:variable name="${1:variable}"&gt;$0&lt;/xsl:variable&gt;</string>
 	<key>name</key>
 	<string>xsl:variable</string>
 	<key>scope</key>
