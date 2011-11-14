@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;xsl:sort select="${1:element}" /&gt;$0</string>
+	<key>name</key>
+	<string>xsl:sort</string>
+	<key>scope</key>
+	<string>meta.block.apply-templates.xsl, meta.block.for-each.xsl</string>
+	<key>tabTrigger</key>
+	<string>&lt;s</string>
+	<key>uuid</key>
+	<string>249D8B8A-8D01-4B56-A941-390E5CDCE4C2</string>
+</dict>
+</plist>
